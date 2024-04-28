@@ -1,0 +1,156 @@
+{% extends 'base.html' %}
+
+{% block title %}About{% endblock %}
+
+{% block content %}
+
+{% load static %}
+
+
+    <!-- ======= End Page Header ======= -->
+    <div class="page-header d-flex align-items-center">
+      <div class="container position-relative">
+        <div class="row d-flex justify-content-center">
+          <div class="col-lg-6 text-center">
+            <h2>About</h2>
+            <p>
+              Welcome to our Past Questions Portal! 📚🔍 If you’re a student preparing for exams, you’re in the right place. <br> By registering, you’ll gain access to a treasure trove of past exam questions across various subjects. Let’s ace those tests together! 🎓✨
+            </p>
+
+            <a class="cta-btn" href="{% url 'home:signin' %}">Become A Member</a>
+
+          </div>
+        </div>
+      </div>
+    </div><!-- End Page Header -->
+
+    <!-- ======= About Section ======= -->
+    <section id="about" class="about">
+      <div class="container">
+
+        <div class="row gy-4 justify-content-center">
+          <div class="col-lg-4">
+            <img src="{% static 'img/profile-img.jpg' %}" class="img-fluid" alt="">
+          </div>
+          <div class="col-lg-5 content">
+            <h2>What We Offer</h2>
+            <p class="fst-italic py-3">
+              Here, you’ll find a comprehensive collection of past exam papers categorized by subject and year. Whether you’re studying for finals or just want to test your knowledge, our extensive database has you covered.
+            </p>
+            <div class="row">
+              <div class="col-lg-6">
+                <ul>
+                  <li><i class="bi bi-chevron-right"></i> <strong>Past Exam Papers</strong> </li>
+                  <li><i class="bi bi-chevron-right"></i> <strong>Search and Filter</strong> </li>
+                  <li><i class="bi bi-chevron-right"></i> <strong>Download and Print</strong> </li>
+                </ul>
+              </div>
+              <div class="col-lg-6">
+                <ul>
+                  <li><i class="bi bi-chevron-right"></i> <strong>Register for Free</strong> </li>
+                  <li><i class="bi bi-chevron-right"></i> <strong>Exclusive Access</strong> </li>
+                  <li><i class="bi bi-chevron-right"></i> <strong>Community Interaction</strong> </li>
+                </ul>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+
+      </div>
+    </section><!-- End About Section -->
+
+    <!-- ======= Testimonials Section ======= -->
+    <section id="testimonials" class="testimonials">
+      <div class="container">
+
+        <div class="section-header">
+          <h2>Testimonials</h2>
+          <p>What they say about us.</p>
+        </div>
+
+        <div class="slides-3 swiper">
+          <div class="swiper-wrapper">
+
+            {% for review in rev %}
+            <div class="swiper-slide">
+              <div class="testimonial-item rounded-3">
+                <div class="stars">
+                  <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                </div>
+                <p>
+                  {{ review.comment }}
+                </p>
+                <div class="profile mt-auto">
+                  {% if review.image %}
+                      <img src="
+
+                      {% if review.image %}
+                        {{ review.image.url }}
+                      {% else %}
+                        
+                      {% endif %}
+                      
+                      " class="testimonial-img" alt="">
+                    {% else %}
+                      
+                    {% endif %}
+                      <h3>{{ review.name }}</h3>
+                      <h4>{{ review.role }}</h4>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+            <!-- End testimonial item -->
+
+          </div>
+          <div class="swiper-pagination"></div>
+        </div>
+
+      </div>
+    </section><!-- End Testimonials Section -->
+    <div class="container my-3 panel" style="display: none;">
+      <div class="card bg-transparent" style=" border: 2px solid white">
+        <div class="card-header text-center bg-transparent mt-2 text-light text-bold"><h3>Leave a Review</h3></div>
+        <div class="card-body bg-transparent">
+          <form action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+    
+            <div class="">
+                
+                <div class="row">
+                  <div class="col-md-6 form-group">
+                    <label class="my-1 text-light" for="name">Name:</label>
+                    {{ form.name }}
+                  </div>
+                  <div class="col-md-6 form-group mt-3 mt-md-0">
+                    <label class="my-1 text-light" for="role">Title (If Any):</label>
+                    {{ form.role }}
+                  </div>
+                </div>
+                
+                <div class="form-group my-1 mt-md-0">
+                  <label class="my-1 text-light" for="comment">Comment:</label>
+                  {{ form.comment }}
+                </div>
+                <br>
+                <div class="form-group my-1 mt-md-0">
+                  <label class="my-1 text-light" for="customFile">Image:</label>
+                  {{ form.image }}
+                </div>
+                
+                
+            </div>
+            <div class="d-flex justify-content-center pt-1 my-3">
+              <button class="btn btn-primary btn-rounded border border-light" type="submit" style="background-color: #27A776;">Submit</button>
+            </div>
+        </form>
+    
+        </div>
+      </div>
+    </div>
+    <div class="container text-center  mb-5">
+      <a class="btn btn-primary border border-light bg-transparent flip"><i class="bi bi-pen"></i> Leave a Review <i class="bi bi-pen"></i></a>
+    </div>
+
+{% endblock %}

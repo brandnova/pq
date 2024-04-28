@@ -1,0 +1,136 @@
+{% extends 'base.html' %} 
+{% block title %}Contact{% endblock %} 
+{% block content %} 
+{% load static %}
+
+<main id="main" data-aos="fade" data-aos-delay="1500">
+  <!-- ======= End Page Header ======= -->
+  <div class="page-header d-flex align-items-center">
+    <div class="container position-relative">
+      <div class="row d-flex justify-content-center">
+        <div class="col-lg-6 text-center">
+          <h2>{{title}}</h2>
+          <p>
+            For more info or enquiry, contact us on any of the contact info
+            provided or leave us a message containing your contact info and
+            expect a reply shortly after.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End Page Header -->
+
+  <!-- ======= Contact Section ======= -->
+  <section id="contact" class="contact">
+    <div class="container">
+      <div class="row gy-4 justify-content-center">
+        <div class="col-lg-3">
+          <div class="info-item d-flex">
+            <i class="bi bi-geo-alt flex-shrink-0"></i>
+            <div>
+              <h4>Location:</h4>
+              <p>Delta State</p>
+            </div>
+          </div>
+        </div>
+        <!-- End Info Item -->
+
+        <div class="col-lg-3">
+          <div class="info-item d-flex">
+            <i class="bi bi-envelope flex-shrink-0"></i>
+            <div>
+              <h4>Email:</h4>
+              <p>brandnova89@gmail.com</p>
+            </div>
+          </div>
+        </div>
+        <!-- End Info Item -->
+
+        <div class="col-lg-3">
+          <div class="info-item d-flex">
+            <i class="bi bi-phone flex-shrink-0"></i>
+            <div>
+              <h4>Call:</h4>
+              <p>+234 8141 9411 92</p>
+            </div>
+          </div>
+        </div>
+        <!-- End Info Item -->
+      </div>
+
+      <div class="row justify-content-center mt-4">
+        <!-- {% if messages %} 
+          {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+          {% endfor %} 
+        {% endif %} -->
+
+        <div class="col-lg-9">
+          <form action="{% url 'home:contact' %}" method="post" class="php-email-form">
+            {% csrf_token %}
+            <div class="my-2 form-group">
+              <label for="name">Your Name</label>
+              {{ form.name }}
+            </div>
+            <div class="row">
+              <div class="col-md-6 form-group mt-3 mt-md-0">
+                <label for="email">Your Email</label>
+                {{ form.email }}
+              </div>
+              <div class="col-md-6 form-group mt-3 mt-md-0">
+                <label for="num">Your Phone Number</label>
+                {{ form.phone }}
+              </div>
+            </div>
+            <div class="form-group mt-3">
+              <label for="subject">Subject</label>
+              {{ form.subject }}
+            </div>
+            <div class="form-group mt-3">
+              <label for="message">Your Message</label>
+              {{ form.message }}
+            </div>
+
+            {% if messages %}
+              {% for message in messages %}
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                  {{ message }}
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+              {% endfor %}
+            {% endif %}
+
+            {% if form.errors %}
+              <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <strong>Error:</strong> Please correct the following errors:
+                <ul>
+                  {% for field in form %}
+                    {% for error in field.errors %}
+                      <li>{{ error }}</li>
+                    {% endfor %}
+                  {% endfor %}
+                </ul>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+            {% endif %}
+
+
+            <div class="text-center">
+              <button type="submit">Send Message</button>
+            </div>
+          </form>
+        </div>
+        <!-- End Contact Form -->
+      </div>
+    </div>
+  </section>
+  <!-- End Contact Section -->
+</main>
+<!-- End #main -->
+
+{% endblock %}

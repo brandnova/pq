@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+
+{% block title %}Gallery{% endblock %}
+
+{% block content %}
+
+{% load static %}
+
+
+  <main id="main" data-aos="fade" data-aos-delay="1500">
+
+    <!-- ======= End Page Header ======= -->
+    <div class="page-header d-flex align-items-center">
+      <div class="container position-relative">
+        <div class="row d-flex justify-content-center">
+          <div class="col-lg-6 text-center w-100">
+            
+            <ul class="list-group m-5 rounded" style="border: 2px solid white;">
+              <li class="list-group-item d-flex justify-content-center align-items-center text-center bg-transparent text-light">
+                  <span class=""><h3>Departments</h3></span>
+              </li>
+              
+              {% for department in departments %}
+              <a href="{% url 'home:departments' %}?query={{ query }}&department={{ department.id }}">
+                  <li class="list-group-item d-flex justify-content-between align-items-center bg-transparent text-light">
+                    <span>See More in <b>{{ department.name }}</b></span>  
+                    <span class="badge bg-success text-light rounded-pill">
+                        {% if department.item_count > 99 %}
+                            99+
+                        {% else %}
+                            {{ department.item_count }}
+                        {% endif %}
+                    </span>
+                  </li>
+              </a>
+              {% endfor %}
+            </ul>
+            
+            {% if user.is_authenticated %}
+            {% else %}
+              <a class="cta-btn" href="{% url 'home:signin' %}">Signin To Access Files.</a>
+            {% endif %}
+
+          </div>
+        </div>
+      </div>
+    </div><!-- End Page Header -->
+
+    <!-- ======= Gallery Section ======= -->
+    <section id="gallery" class="gallery">
+      <div class="container-fluid">
+
+        <div class="row gy-4 justify-content-center">
+
+          <div class="row gy-4">
+            
+            {% if items %}
+                {% for item in items %}
+
+                  <div class="col-xl-3 col-lg-4 col-md-6">
+                    <div class="gallery-item h-100">
+                      <img src="{{ item.image.url }}" class="img-fluid" alt="">
+                      <div class="gallery-links d-flex align-items-center justify-content-center">
+                        <a href="{{ item.image.url }}" title="{{ item.title }}" class="glightbox preview-link"><i class="bi bi-arrows-angle-expand"></i></a>
+                        <a href="{% url 'docs:details' item.id %}" class="details-link"><i class="bi bi-link-45deg"></i></a>
+                      </div>
+                    </div>
+                  </div>
+
+                {% endfor %}
+            {% else %}
+                <p>No items in this category.</p>
+            {% endif %}
+                <!-- End Service Item -->
+
+
+        </div>
+
+      </div>
+    </section><!-- End Gallery Section -->
+
+  </main><!-- End #main -->
+  
+{% endblock %}

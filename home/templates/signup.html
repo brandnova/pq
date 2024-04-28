@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% block title %}Signup{% endblock %}
+
+{% block content %}
+
+{% load static %}
+
+
+<div class="page-header d-flex align-items-center">
+    
+  </div>
+
+
+<div class="container d-flex justify-content-center">
+
+
+    <div class="col-lg-9">
+        <div class="text-center mb-5"><h2>SIGN UP</h2></div>
+        <form action="." method="POST" class="#">
+          {% csrf_token %}
+          <div class="row">
+            <div class="col-md-6 form-group">
+              <label for="username">Username:</label>
+              {{ form.username }}
+            </div>
+            <div class="col-md-6 form-group mt-3 mt-md-0">
+              <label for="email">Email:</label>
+              {{ form.email }}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 form-group">
+              <label for="password1">Password:</label>
+              {{ form.password1 }}
+            </div>
+            <div class="col-md-6 form-group mt-3 mt-md-0">
+              <label for="password2">Repeat Password:</label>
+              {{ form.password2 }}
+            </div>
+          </div>
+
+          {% if form.errors %}
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+              {% for field in form %}
+                {% for error in field.errors %}
+                  <p>{{ error }}</p>
+                {% endfor %}
+              {% endfor %}
+              
+              {% for error in form.non_field_errors %}
+                <p>{{ error }}</p>
+              {% endfor %}
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+          {% endif %}
+          <div class="text-center my-3">
+            <a href="{% url 'home:signin' %}">Already a member? Signin!</a>
+          </div>
+          <div class="text-center my-3"><button class="btn btn-success" type="submit">Signup</button></div>
+        </form>
+    </div><!-- End Contact Form -->
+
+   
+
+</div>
+
+
+
+{% endblock %}

@@ -1,0 +1,140 @@
+{% extends 'base.html' %}
+
+{% block title %}GPA/CGPA Calculator{% endblock %}
+
+{% block content %}
+
+{% load static %}
+
+  <main id="main" data-aos="fade" data-aos-delay="1500">
+
+    <!-- ======= End Page Header ======= -->
+    <div class="page-header d-flex align-items-center">
+      <div class="container position-relative">
+        <div class="row d-flex justify-content-center">
+          <div class="col-lg-6 text-center">
+            <h2>{{title}}</h2>
+            <p>
+                Our easy to use calculator can be used to calculate your GPA and CGPA.
+            </p>
+
+            <a class="cta-btn" href="{% url 'home:contact' %}">Available for hire</a>
+
+          </div>
+        </div>
+      </div>
+    </div><!-- End Page Header -->
+
+    <section class="sample-page">
+      <div class="container text-center" data-aos="fade-up">
+
+        <pre class="my-3 ">
+          To calculate the GPA for the FIRST SEMESTER, you only need to consider the courses and grades from the FIRST SEMESTER. The "Cumulative Total Credit Points (TCP) to date" should represent the total number of credit points earned by the student up to the end of the FIRST SEMESTER. 
+
+          Given the provided information, the calculation for the GPA of the FIRST SEMESTER is as follows:
+
+          1. **Total Credit Points (TCP) for the FIRST SEMESTER**: Sum of (Grade Points * Units) for all courses in the FIRST SEMESTER.
+
+              - ENG 301: 1 * 49 = 49
+              - ENG 302: 4 * 60 = 240
+              - ENG 303: 1 * 48 = 48
+              - EEE 301: 1 * 47 = 47
+              - EEE 302: 3 * 50 = 150
+              - EEE 303: 0 * 37 = 0 (Failed course, no grade points)
+              - EEE 304: 3 * 56 = 168
+              - EEE 306: 1 * 46 = 46
+              - ENG 202: 1 * 45 = 45
+
+              Total TCP for FIRST SEMESTER = 49 + 240 + 48 + 47 + 150 + 0 + 168 + 46 + 45 = 793
+
+          2. **Total Number of Units (TNU) for the FIRST SEMESTER**: Sum of units for all courses in the FIRST SEMESTER.
+
+              Total TNU for FIRST SEMESTER = 1 + 4 + 1 + 1 + 3 + 0 + 3 + 1 + 1 = 15
+
+          With these calculations, you can input the following values for the "Cumulative Total Credit Points (TCP) to date" field:
+
+          - Cumulative Total Credit Points (TCP) to date: 793
+
+          This value represents the total number of credit points earned by the student up to the end of the FIRST SEMESTER, which is needed for calculating the GPA for the FIRST SEMESTER.
+        </pre>
+
+        <div class="container text-center my-3">
+          1. Current CGPA: This value represents the Cumulative Grade Point Average (CGPA) that the student has achieved up to the current point in time. It reflects the overall performance of the student in all the courses taken so far in their academic career. In the provided example, the current CGPA is 3.28.<br>
+          2. Cumulative Total Credit Points (TCP) to date: This value represents the total number of credit points earned by the student in all the courses taken up to the current point in time. It includes the credit points earned in the current semester as well as in all previous semesters. In the provided example, the cumulative TCP to date is also 3.28.<br>
+          3. Cumulative Total Number of Units (TNU) to date: This value represents the total number of units (or credits) for all the courses taken up to the current point in time. It includes the units from the current semester as well as from all previous semesters. In the provided example, the cumulative TNU to date is 22. <br>
+        </div>
+        <p class="my-3">
+          ENG 301 - 49 D - 3 <br>
+          ENG 302 - 60 B - 2 <br>
+          ENG 303 - 48 D - 2 <br>
+          EEE 301 - 47 D - 3 <br>
+          EEE 302 - 50 C - 3 <br>
+          EEE 303 - 37 F - 3 <br>
+          EEE 304 - 56 C - 3 <br>
+          EEE 306 - 46 D - 3 <br>
+          ENG 202 - 45 D - 2 <br>
+        </p>
+
+       <div class="card">
+        <div class="card-header">
+            G.P.A Calculator
+        </div>
+        <div class="card-body">
+          <form method="post">
+            {% csrf_token %}
+            <h2>Enter Course Data</h2>
+            <div id="course_data">
+                <div class="course">
+                    <label for="course_name_1">Course Name:</label>
+                    <input type="text" name="course_name" id="course_name_1">
+                    <label for="units_1">Units:</label>
+                    <input type="number" name="units" id="units_1">
+                    <label for="grade_1">Grade:</label>
+                    <input type="text" name="grade" id="grade_1">
+                </div>
+            </div>
+            <button type="button" onclick="addCourse()">Add Course</button>
+            <hr>
+            <h2>Enter Cumulative Data</h2>
+            <label for="current_cgpa">Current CGPA:</label>
+            <input type="number" step="0.01" name="current_cgpa" id="current_cgpa">
+            <label for="cumulative_tcp">Cumulative Total Credit Points (TCP):</label>
+            <input type="number" step="0.01" name="cumulative_tcp" id="cumulative_tcp">
+            <label for="cumulative_tnu">Cumulative Total Number of Units (TNU):</label>
+            <input type="number" step="0.01" name="cumulative_tnu" id="cumulative_tnu"><br>
+            <button type="submit">Calculate</button>
+        </form>
+        </div>
+       </div>
+
+      </div>
+    </section>
+
+  </main><!-- End #main -->
+
+  <script>
+
+    
+        
+      var courseCount = 1;
+
+      function addCourse() {
+          courseCount++;
+          var courseDiv = document.createElement("div");
+          courseDiv.classList.add("course");
+          courseDiv.innerHTML = `
+              <label for="course_name_${courseCount}">Course Name:</label>
+              <input type="text" name="course_name" id="course_name_${courseCount}">
+              <label for="units_${courseCount}">Units:</label>
+              <input type="number" name="units" id="units_${courseCount}">
+              <label for="grade_${courseCount}">Grade:</label>
+              <input type="text" name="grade" id="grade_${courseCount}">
+          `;
+          document.getElementById("course_data").appendChild(courseDiv);
+      }
+    
+
+    
+
+  </script>
+{% endblock %}

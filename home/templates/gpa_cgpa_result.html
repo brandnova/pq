@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+
+{% block title %}GPA/CGPA Result{% endblock %}
+
+{% block content %}
+
+{% load static %}
+
+  <main id="main" data-aos="fade" data-aos-delay="1500">
+
+    <!-- ======= End Page Header ======= -->
+    <div class="page-header d-flex align-items-center">
+      <div class="container position-relative">
+        <div class="row d-flex justify-content-center">
+          <div class="col-lg-6 text-center">
+            <h2>Sample Inner Page</h2>
+            <p>Odio et unde deleniti. Deserunt numquam exercitationem. Officiis quo odio sint voluptas consequatur ut a odio voluptatem. Sit dolorum debitis veritatis natus dolores. Quasi ratione sint. Sit quaerat ipsum dolorem.</p>
+
+            <a class="cta-btn" href="{% url 'home:contact' %}">Available for hire</a>
+
+          </div>
+        </div>
+      </div>
+    </div><!-- End Page Header -->
+
+    <section class="sample-page">
+      <div class="container" data-aos="fade-up">
+
+        <p>
+          You can duplicate this sample page and create any number of inner pages you like!
+        </p>
+
+        <h1>GPA and CGPA Result</h1>
+    
+    <!-- Display Semester GPA -->
+    <h2>Semester GPA:</h2>
+    <p>{{ semester_gpa }}</p>
+
+    <!-- Display Cumulative GPA -->
+    <h2>Cumulative GPA:</h2>
+    <p>{{ cgpa }}</p>
+
+    <!-- Display Course Data -->
+    <h2>Course Data:</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Course Name</th>
+                <th>Units</th>
+                <th>Grade</th>
+                <th>Grade Points</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Loop through course data and display each course -->
+            {% for course in course_data %}
+            <tr>
+                <td>{{ course.course_name }}</td>
+                <td>{{ course.units }}</td>
+                <td>{{ course.grade }}</td>
+                <td>{{ course.grade_points }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{% url 'home:calculator' %}" class="btn">Go Back to Calculator</a>
+
+      </div>
+    </section>
+
+  </main><!-- End #main -->
+{% endblock %}
