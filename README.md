@@ -59,7 +59,7 @@ Now that you have Django installed, you now run the Django scripts on your local
 
 ## Additional Resources
 
-- [Project Live Sample](https://app.coursearena.com.ng): Official documentation for Django.
-- [My portfolio](https://brandnova.github.io): Beginner-friendly tutorial for learning Django.
+- [Project Sample](https://app.coursearena.com.ng): Viewa live sample of the project.
+- [My portfolio](https://brandnova.github.io): Visit my portfolio website to contact me.
 
 ---
