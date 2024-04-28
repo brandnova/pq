@@ -37,15 +37,14 @@ Before you begin, ensure that you have the following installed on your system:
 
 ## Running the Django Scripts
 
-Now that you have Django installed, you now run the Django scripts on your local PC.
+Now that you have Django installed, you can now run the Django scripts on your local PC.
 
 1. **Install the project dependencies**: In your terminal, run the following command:
    ```
    pip install -r requirements.txt
    ```
-   Replace `myproject` with the name you want to give to your Django project.
 
-2. **Navigate to the Project Directory**: Change into the directory of your Django project:
+2. **Navigate to the Project Directory**: Change into the directory of the Django project:
    ```
    cd PQdelsu
    ```
