@@ -58,7 +58,7 @@ Now that you have Django installed, you can now run the Django scripts on your l
 
 ## Additional Resources
 
-- [Project Sample](https://app.coursearena.com.ng): Viewa live sample of the project.
+- [Project Sample](https://app.coursearena.com.ng): View a live sample of the project.
 - [My portfolio](https://brandnova.github.io): Visit my portfolio website to contact me.
 
 
