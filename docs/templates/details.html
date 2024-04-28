@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ pdf_item.title }}{% endblock %}
+
+{% block content %}
+
+{% load static %}
+
+
+  <main id="main" data-aos="fade" data-aos-delay="1500">
+
+    <!-- ======= End Page Header ======= -->
+    <div class="page-header d-flex align-items-center">
+      {% comment %} <div class="container position-relative">
+        <div class="row d-flex justify-content-center">
+          <div class="col-lg-6 text-center">
+            <h2>Gallery Single</h2>
+            <p>Odio et unde deleniti. Deserunt numquam exercitationem. Officiis quo odio sint voluptas consequatur ut a odio voluptatem. Sit dolorum debitis veritatis natus dolores. Quasi ratione sint. Sit quaerat ipsum dolorem.</p>
+
+            <a class="cta-btn" href="contact.html">Available for hire</a>
+
+          </div>
+        </div>
+      </div> {% endcomment %}
+    </div>
+    <!-- End Page Header -->
+
+    <!-- ======= Gallery Single Section ======= -->
+    <section id="gallery-single" class="gallery-single">
+      <div class="container">
+
+        <div class="">
+          <img src="
+          {% if item.image %}
+            {{ item.image.url }}
+          {% else %}
+            #
+          {% endif %}
+        " class="img-fluid rounded" alt="">
+        </div>
+
+        <div class="row justify-content-between gy-4 mt-4">
+
+          <div class="col-lg-8">
+            <div class="portfolio-description">
+              <h2>{{ item.title }}</h2>
+              <p>
+                {{item.description}}
+              </p>
+
+              <a class="btn rounded-pill px-3 bg-success" href="{% url 'index' %}"><i class="bi bi-arrow-left"></i> Home</a>
+
+            </div>
+          </div>
+
+          <div class="col-lg-3">
+            <div class="portfolio-info">
+              <h3>P.D.F information</h3>
+              <ul>
+                <li><strong>Category</strong> <span>{{ item.category }}</span></li>
+                <li><strong>Faculty</strong> <span>{{ item.faculty }}</span></li>
+                <li><strong>Department</strong> <span>{{ item.department }}</span></li>
+                <li><strong>Level</strong><span>{{ item.level }}</span></li>
+                <li><strong>Semester</strong><span>{{ item.semester }}</span></li>
+                {% if user.is_authenticated %}
+                  <li><a href="
+
+                    {% if item.file %}
+                      {{ item.file.url }}
+                    {% else %}
+                      #{% comment %} {% url 'home:no_file' %} {% endcomment %}
+                    {% endif %}
+                    
+                    " download class="btn-visit align-self-start">Download P.D.F <i class="bi bi-download"></i></a></li>
+                {% else %}
+                  <li><a href="{% url 'home:signin' %}" class="btn-visit align-self-start">Signin to Download</a></li>
+                  
+                {% endif %}
+              </ul>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- End Gallery Single Section -->
+
+  </main><!-- End #main -->
+
+{% endblock %}
