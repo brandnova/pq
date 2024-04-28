@@ -9,7 +9,7 @@ This guide will walk you through the process of installing and running this scri
 
 Before you begin, ensure that you have the following installed on your system:
 
-- Python (version 3.6 or higher)
+- [Python](https://www.python.org/downloads/): (version 3.6 or higher).
 - pip (Python package manager - Usually comes with Python)
 
 ## Installation Steps
@@ -61,5 +61,6 @@ Now that you have Django installed, you now run the Django scripts on your local
 
 - [Project Sample](https://app.coursearena.com.ng): Viewa live sample of the project.
 - [My portfolio](https://brandnova.github.io): Visit my portfolio website to contact me.
+
 
 ---
