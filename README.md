@@ -1,7 +1,7 @@
 # PQ @ Delsu
 An online platform where students can access tons of study materials like past questions, textbooks, and other study materials in PDF format.
 
-# Django Installation and Setup Guide
+# Django Installation and Setup Guide (Offline)
 
 This guide will walk you through the process of installing and running this scripts on your local PC.
 
